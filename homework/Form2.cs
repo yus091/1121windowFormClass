@@ -16,6 +16,9 @@ namespace homework
         static Graphics g;	  //繪圖裝置（一個就夠了）
         static int r = 10, r2 = 20;    //半徑，直徑
         static double fr = 0; //摩擦力
+        BufferedGraphicsContext currentContext;
+        BufferedGraphics gBuffer;
+        static int width = 0, height = 0; // 球桌寬高
         class ball
         {     //球 class(類別)
             int id;                                      //球編號
@@ -67,6 +70,35 @@ namespace homework
                     (float)(x - r *cosA), (float)(y - r * sinA)
                     );
             }
+
+            public void rebound()
+            {
+                if(x < r || x > width - r)   // 出左右邊
+                {
+                    setAng(Math.PI - ang);
+                    if(x < r)
+                    {
+                        x = r;  // 拉回桌面
+                    }
+                    else
+                    {
+                        x = width - r;
+                    }
+                }
+                else if(y < r || y > height - r)  // 出上下邊
+                {
+                    setAng(-ang);
+                    if(y < r)
+                    {
+                        y = r;  // 拉回桌面
+                    }
+                    else
+                    {
+                        y = height - r;
+                    }
+                }
+            }
+
         }	//class ball 結束
 
         ball[] balls = new ball[10];    // 10 顆球的陣列    宣告，new 
@@ -81,6 +113,8 @@ namespace homework
 　　　   // 0號球(母球)， 白色，放右邊中間
 　　　       balls[0] = new ball(600, 230, Color.FromArgb(255, 255, 255, 255), 0);
             balls[0].setAng(Math.PI / 4);
+            width = panel1.Width;
+            height = panel1.Height;
 
         }
 
@@ -122,11 +156,16 @@ namespace homework
         private void timer1_Tick(object sender, EventArgs e)
         {
             double sum_speed = 0;
+            double spd_sum = 0;
             panel1.Refresh();
             for(int i = 0; i < 10; i++)
             {
-                balls[i].move();
-                sum_speed += balls[i].speed;
+                if (balls[i].speed > 0)
+                {
+                    balls[i].move();
+                    balls[i].rebound();
+                    sum_speed += balls[i].speed;
+                }
             }
             if(sum_speed <= 0.001)
             {
@@ -140,6 +179,11 @@ namespace homework
             balls[0].speed = vScrollBar1.Maximum - vScrollBar1.Value;
             fr = (vScrollBar2.Maximum - vScrollBar2.Value) / 50.0;
             timer1.Enabled = true;
+        }
+
+        private void HitPowerLB_Click(object sender, EventArgs e)
+        {
+
         }
 
         private void Form2_Load(object sender, EventArgs e)

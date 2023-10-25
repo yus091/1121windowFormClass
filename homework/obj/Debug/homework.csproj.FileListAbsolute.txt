@@ -9,3 +9,15 @@ C:\Users\yus\Desktop\教材\1121視窗\homework\homework\homework\bin\Debug\home
 C:\Users\yus\Desktop\教材\1121視窗\homework\homework\homework\bin\Debug\homework.pdb
 C:\Users\yus\Desktop\教材\1121視窗\homework\homework\homework\obj\Debug\homework.exe
 C:\Users\yus\Desktop\教材\1121視窗\homework\homework\homework\obj\Debug\homework.pdb
+C:\Users\CS2019\Desktop\新增資料夾\1121windowFormClass\homework\bin\Debug\homework.exe.config
+C:\Users\CS2019\Desktop\新增資料夾\1121windowFormClass\homework\bin\Debug\homework.exe
+C:\Users\CS2019\Desktop\新增資料夾\1121windowFormClass\homework\bin\Debug\homework.pdb
+C:\Users\CS2019\Desktop\新增資料夾\1121windowFormClass\homework\obj\Debug\homework.csproj.AssemblyReference.cache
+C:\Users\CS2019\Desktop\新增資料夾\1121windowFormClass\homework\obj\Debug\homework.csproj.SuggestedBindingRedirects.cache
+C:\Users\CS2019\Desktop\新增資料夾\1121windowFormClass\homework\obj\Debug\homework.Form1.resources
+C:\Users\CS2019\Desktop\新增資料夾\1121windowFormClass\homework\obj\Debug\homework.Form2.resources
+C:\Users\CS2019\Desktop\新增資料夾\1121windowFormClass\homework\obj\Debug\homework.Properties.Resources.resources
+C:\Users\CS2019\Desktop\新增資料夾\1121windowFormClass\homework\obj\Debug\homework.csproj.GenerateResource.cache
+C:\Users\CS2019\Desktop\新增資料夾\1121windowFormClass\homework\obj\Debug\homework.csproj.CoreCompileInputs.cache
+C:\Users\CS2019\Desktop\新增資料夾\1121windowFormClass\homework\obj\Debug\homework.exe
+C:\Users\CS2019\Desktop\新增資料夾\1121windowFormClass\homework\obj\Debug\homework.pdb

@@ -102,6 +102,27 @@ namespace homework
         }	//class ball 結束
 
         ball[] balls = new ball[10];    // 10 顆球的陣列    宣告，new 
+        private void Hit(ball b0, ball b1)
+        {
+            if (b0.speed < b1.speed)
+            {   // b1 hit  b0  速度快的 撞 慢的
+                ball t = b0;     //  交換球，讓速度快的球 成為 b0
+                b0 = b1;
+                b1 = t;
+            }
+            double dx = b1.x - b0.x, dy = b1.y - b0.y;
+            if (Math.Abs(dx) <= r2 && Math.Abs(dy) <= r2)
+            { //  x坐標間差距 < 球直徑
+              // 而且　　y坐標間差距 < 球直徑
+                double ang = Math.Atan2(dy, dx);   //  球b0 中心 到 球b1 中心 連線方向
+                b1.setAng(ang);     //  球b1 被撞后方向
+                b0.setAng(ang + Math.PI / 2.0);   //  球b0  碰撞 b1 后 和 b1 的夾角 90° 
+
+                double spd_average = (b0.speed + b1.speed) / 2.0;
+                b0.speed = b1.speed = spd_average;    //  碰撞 後 先大略平均分配 兩球的速度
+                                                      // 白球速度 == 紅球速度 == 兩球的速度 和 /2
+            }
+        }
 
         public Form2()
         {
@@ -166,6 +187,8 @@ namespace homework
                     balls[i].rebound();
                     sum_speed += balls[i].speed;
                 }
+                for (int j = i + 1; j < 10; j++)  // j > i 兩球間不重複 碰撞偵測
+                    Hit(balls[i], balls[j]);
             }
             if(sum_speed <= 0.001)
             {

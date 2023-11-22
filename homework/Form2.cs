@@ -137,6 +137,14 @@ namespace homework
             width = panel1.Width;
             height = panel1.Height;
 
+            // 從這裡開始
+            currentContext = BufferedGraphicsManager.Current;
+            gBuffer = currentContext.Allocate(
+           this.panel1.CreateGraphics(),
+           new Rectangle(0, 0, width, height));
+            g = gBuffer.Graphics; 
+            // 到這裡結束，是閃爍的
+
         }
 
         
@@ -156,6 +164,7 @@ namespace homework
 
         private void panel1_Paint(object sender, PaintEventArgs e)
         {
+            g.Clear(panel1.BackColor); //用g來繪圖  寫進 gbuffer 記憶體
             for (int i = 0; i < 10; i++)     //10 顆球
                 balls[i].draw();     //每個球 畫自己
 
@@ -164,6 +173,9 @@ namespace homework
             {
                 balls[0].drawStick(); //  0號球停止時 才畫指向 0號球(母球) 的球桿
             }
+
+            // 之後 送出 gBuffer 到繪圖裝置
+            gBuffer.Render(e.Graphics);
         }
 
         private void panel1_MouseDown(object sender, MouseEventArgs e)
@@ -172,6 +184,7 @@ namespace homework
             balls[0].setAng(a); //存入母球行進角度
             panel1.Refresh(); // 重新繪畫轉動過的球桿
             g.DrawRectangle(Pens.HotPink, e.X - 2, e.Y - 2, 4, 4); //點擊點畫小方塊
+            gBuffer.Render(); // 之後 送出 gBuffer 到繪圖裝置
         }
 
         private void timer1_Tick(object sender, EventArgs e)
